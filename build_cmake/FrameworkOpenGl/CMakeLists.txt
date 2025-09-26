@@ -1,6 +1,5 @@
 project(Framework_OpenGl)
 
-include(Header)
 include(../Framework_Common.cmake)
 
 if(TARGET_PLATFORM_ANDROID OR TARGET_PLATFORM_IOS OR TARGET_PLATFORM_UNIX_ARM OR TARGET_PLATFORM_JS)

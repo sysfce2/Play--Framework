@@ -1,6 +1,5 @@
 project(Framework_OpenAl)
 
-include(Header)
 include(../Framework_Common.cmake)
 
 if(TARGET_PLATFORM_JS)

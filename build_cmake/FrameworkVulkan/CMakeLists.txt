@@ -1,6 +1,5 @@
 project(Framework_Vulkan)
 
-include(Header)
 include(../Framework_Common.cmake)
 
 # Android SDK already comes with the necessary headers
