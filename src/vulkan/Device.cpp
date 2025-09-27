@@ -107,6 +107,8 @@ void CDevice::Reset()
 	vkMapMemory = nullptr;
 	vkUnmapMemory = nullptr;
 	
+	vkGetBufferDeviceAddress = nullptr;
+
 	vkCreateGraphicsPipelines = nullptr;
 	vkCreateComputePipelines = nullptr;
 	vkDestroyPipeline = nullptr;
@@ -134,6 +136,10 @@ void CDevice::Reset()
 	vkDestroySwapchainKHR = nullptr;
 	vkGetSwapchainImagesKHR = nullptr;
 	vkQueuePresentKHR = nullptr;
+
+	vkCmdBuildAccelerationStructuresKHR = nullptr;
+	vkCreateAccelerationStructureKHR = nullptr;
+	vkGetAccelerationStructureBuildSizesKHR = nullptr;
 }
 
 CDevice& CDevice::operator =(CDevice&& rhs)
@@ -219,6 +225,8 @@ CDevice& CDevice::operator =(CDevice&& rhs)
 	std::swap(vkMapMemory, rhs.vkMapMemory);
 	std::swap(vkUnmapMemory, rhs.vkUnmapMemory);
 	
+	std::swap(vkGetBufferDeviceAddress, rhs.vkGetBufferDeviceAddress);
+
 	std::swap(vkCreateGraphicsPipelines, rhs.vkCreateGraphicsPipelines);
 	std::swap(vkCreateComputePipelines, rhs.vkCreateComputePipelines);
 	std::swap(vkDestroyPipeline, rhs.vkDestroyPipeline);
@@ -247,6 +255,10 @@ CDevice& CDevice::operator =(CDevice&& rhs)
 	std::swap(vkGetSwapchainImagesKHR, rhs.vkGetSwapchainImagesKHR);
 	std::swap(vkQueuePresentKHR, rhs.vkQueuePresentKHR);
 	
+	std::swap(vkCmdBuildAccelerationStructuresKHR, rhs.vkCmdBuildAccelerationStructuresKHR);
+	std::swap(vkCreateAccelerationStructureKHR, rhs.vkCreateAccelerationStructureKHR);
+	std::swap(vkGetAccelerationStructureBuildSizesKHR, rhs.vkGetAccelerationStructureBuildSizesKHR);
+
 	return (*this);
 }
 
@@ -338,6 +350,8 @@ void CDevice::Create(VkPhysicalDevice physicalDevice, const VkDeviceCreateInfo& 
 	SET_PROC_ADDR(vkMapMemory);
 	SET_PROC_ADDR(vkUnmapMemory);
 	
+	SET_PROC_ADDR(vkGetBufferDeviceAddress);
+
 	SET_PROC_ADDR(vkCreateGraphicsPipelines);
 	SET_PROC_ADDR(vkCreateComputePipelines);
 	SET_PROC_ADDR(vkDestroyPipeline);
@@ -365,5 +379,9 @@ void CDevice::Create(VkPhysicalDevice physicalDevice, const VkDeviceCreateInfo& 
 	SET_PROC_ADDR(vkDestroySwapchainKHR);
 	SET_PROC_ADDR(vkGetSwapchainImagesKHR);
 	SET_PROC_ADDR(vkQueuePresentKHR);
+
+	SET_PROC_ADDR(vkCmdBuildAccelerationStructuresKHR);
+	SET_PROC_ADDR(vkCreateAccelerationStructureKHR);
+	SET_PROC_ADDR(vkGetAccelerationStructureBuildSizesKHR);
 }
 

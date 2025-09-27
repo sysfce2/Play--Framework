@@ -114,6 +114,9 @@ namespace Framework
 			DECLARE_FUNCTION(vkMapMemory)
 			DECLARE_FUNCTION(vkUnmapMemory)
 			
+			//Device address
+			DECLARE_FUNCTION(vkGetBufferDeviceAddress);
+
 			//Pipeline
 			DECLARE_FUNCTION(vkCreateGraphicsPipelines)
 			DECLARE_FUNCTION(vkCreateComputePipelines)
@@ -149,6 +152,11 @@ namespace Framework
 			DECLARE_FUNCTION(vkDestroySwapchainKHR)
 			DECLARE_FUNCTION(vkGetSwapchainImagesKHR)
 			DECLARE_FUNCTION(vkQueuePresentKHR)
+
+			//VK_KHR_acceleration_structure
+			DECLARE_FUNCTION(vkCmdBuildAccelerationStructuresKHR)
+			DECLARE_FUNCTION(vkCreateAccelerationStructureKHR)
+			DECLARE_FUNCTION(vkGetAccelerationStructureBuildSizesKHR)
 		
 		private:
 			void    Create(VkPhysicalDevice, const VkDeviceCreateInfo&);
