@@ -3,6 +3,7 @@
 #include "vulkan/StructDefs.h"
 #include "vulkan/Utils.h"
 #include "vulkan/CommandBufferPool.h"
+#include "vulkan/StructChain.h"
 
 using namespace Framework::Vulkan;
 
@@ -77,7 +78,17 @@ void CBuffer::Create(const VkPhysicalDeviceMemoryProperties& memoryProperties, V
 	VkMemoryRequirements memoryRequirements = {};
 	m_device->vkGetBufferMemoryRequirements(*m_device, m_handle, &memoryRequirements);
 
+	Framework::Vulkan::CStructChain allocateStructChain;
+
+	if(usage & VK_BUFFER_USAGE_SHADER_DEVICE_ADDRESS_BIT)
+	{
+		auto memoryAllocateFlagsInfo = Framework::Vulkan::MemoryAllocateFlagsInfo();
+		memoryAllocateFlagsInfo.flags = VK_MEMORY_ALLOCATE_DEVICE_ADDRESS_BIT;
+		allocateStructChain.AddStruct(memoryAllocateFlagsInfo);
+	}
+
 	auto memoryAllocateInfo = Framework::Vulkan::MemoryAllocateInfo();
+	memoryAllocateInfo.pNext = allocateStructChain.GetNext();
 	memoryAllocateInfo.allocationSize = memoryRequirements.size;
 	memoryAllocateInfo.memoryTypeIndex = GetMemoryTypeIndex(memoryProperties, memoryRequirements.memoryTypeBits, properties);
 	assert(memoryAllocateInfo.memoryTypeIndex != Framework::Vulkan::VULKAN_MEMORY_TYPE_INVALID);
