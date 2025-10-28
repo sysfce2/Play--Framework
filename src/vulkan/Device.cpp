@@ -140,6 +140,10 @@ void CDevice::Reset()
 	vkCmdBuildAccelerationStructuresKHR = nullptr;
 	vkCreateAccelerationStructureKHR = nullptr;
 	vkGetAccelerationStructureBuildSizesKHR = nullptr;
+
+	vkCmdTraceRaysKHR = nullptr;
+	vkCreateRayTracingPipelinesKHR = nullptr;
+	vkGetRayTracingShaderGroupHandlesKHR = nullptr;
 }
 
 CDevice& CDevice::operator =(CDevice&& rhs)
@@ -258,6 +262,10 @@ CDevice& CDevice::operator =(CDevice&& rhs)
 	std::swap(vkCmdBuildAccelerationStructuresKHR, rhs.vkCmdBuildAccelerationStructuresKHR);
 	std::swap(vkCreateAccelerationStructureKHR, rhs.vkCreateAccelerationStructureKHR);
 	std::swap(vkGetAccelerationStructureBuildSizesKHR, rhs.vkGetAccelerationStructureBuildSizesKHR);
+
+	std::swap(vkCmdTraceRaysKHR, rhs.vkCmdTraceRaysKHR);
+	std::swap(vkCreateRayTracingPipelinesKHR, rhs.vkCreateRayTracingPipelinesKHR);
+	std::swap(vkGetRayTracingShaderGroupHandlesKHR, rhs.vkGetRayTracingShaderGroupHandlesKHR);
 
 	return (*this);
 }
@@ -383,5 +391,9 @@ void CDevice::Create(VkPhysicalDevice physicalDevice, const VkDeviceCreateInfo& 
 	SET_PROC_ADDR(vkCmdBuildAccelerationStructuresKHR);
 	SET_PROC_ADDR(vkCreateAccelerationStructureKHR);
 	SET_PROC_ADDR(vkGetAccelerationStructureBuildSizesKHR);
+
+	SET_PROC_ADDR(vkCmdTraceRaysKHR);
+	SET_PROC_ADDR(vkCreateRayTracingPipelinesKHR);
+	SET_PROC_ADDR(vkGetRayTracingShaderGroupHandlesKHR);
 }
 

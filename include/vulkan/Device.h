@@ -157,7 +157,12 @@ namespace Framework
 			DECLARE_FUNCTION(vkCmdBuildAccelerationStructuresKHR)
 			DECLARE_FUNCTION(vkCreateAccelerationStructureKHR)
 			DECLARE_FUNCTION(vkGetAccelerationStructureBuildSizesKHR)
-		
+
+			//VK_KHR_ray_tracing_pipeline
+			DECLARE_FUNCTION(vkCmdTraceRaysKHR)
+			DECLARE_FUNCTION(vkCreateRayTracingPipelinesKHR)
+			DECLARE_FUNCTION(vkGetRayTracingShaderGroupHandlesKHR)
+
 		private:
 			void    Create(VkPhysicalDevice, const VkDeviceCreateInfo&);
 			
