@@ -13,7 +13,7 @@ namespace Framework
 		{
 		public:
 			        CBuffer() = default;
-			        CBuffer(CDevice&, const VkPhysicalDeviceMemoryProperties&, VkBufferUsageFlags, VkMemoryPropertyFlags, uint32);
+			        CBuffer(CDevice&, const VkPhysicalDeviceMemoryProperties&, VkBufferUsageFlags, VkMemoryPropertyFlags, VkDeviceSize);
 			        CBuffer(const CBuffer&) = delete;
 			        CBuffer(CBuffer&&);
 			virtual ~CBuffer();
@@ -31,14 +31,14 @@ namespace Framework
 			void Write(VkQueue, CCommandBufferPool&, const VkPhysicalDeviceMemoryProperties&, const void*);
 			
 		private:
-			void Create(const VkPhysicalDeviceMemoryProperties&, VkBufferUsageFlags, VkMemoryPropertyFlags, uint32);
+			void Create(const VkPhysicalDeviceMemoryProperties&, VkBufferUsageFlags, VkMemoryPropertyFlags, VkDeviceSize);
 			void MoveFrom(CBuffer&&);
 			
 			CDevice* m_device = nullptr;
 			VkBuffer m_handle = VK_NULL_HANDLE;
 			VkDeviceMemory m_memory = VK_NULL_HANDLE;
 
-			uint32 m_size = 0;
+			VkDeviceSize m_size = 0;
 		};
 	}
 }

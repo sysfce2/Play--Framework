@@ -7,7 +7,7 @@
 
 using namespace Framework::Vulkan;
 
-CBuffer::CBuffer(CDevice& device, const VkPhysicalDeviceMemoryProperties& memoryProperties, VkBufferUsageFlags usage, VkMemoryPropertyFlags properties, uint32 size)
+CBuffer::CBuffer(CDevice& device, const VkPhysicalDeviceMemoryProperties& memoryProperties, VkBufferUsageFlags usage, VkMemoryPropertyFlags properties, VkDeviceSize size)
 : m_device(&device)
 , m_size(size)
 {
@@ -65,7 +65,7 @@ VkDeviceMemory CBuffer::GetMemory() const
 	return m_memory;
 }
 
-void CBuffer::Create(const VkPhysicalDeviceMemoryProperties& memoryProperties, VkBufferUsageFlags usage, VkMemoryPropertyFlags properties, uint32 size)
+void CBuffer::Create(const VkPhysicalDeviceMemoryProperties& memoryProperties, VkBufferUsageFlags usage, VkMemoryPropertyFlags properties, VkDeviceSize size)
 {
 	auto result = VK_SUCCESS;
 
