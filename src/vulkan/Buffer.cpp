@@ -158,7 +158,16 @@ void CBuffer::Read(VkQueue queue, CCommandBufferPool& commandBufferPool,
 	}
 }
 
-void CBuffer::Write(VkQueue queue, CCommandBufferPool& commandBufferPool, 
+void CBuffer::Write(const void* bufferData)
+{
+	void* mappedBuffer = nullptr;
+	auto result = m_device->vkMapMemory(*m_device, GetMemory(), 0, VK_WHOLE_SIZE, 0, &mappedBuffer);
+	CHECKVULKANERROR(result);
+	memcpy(mappedBuffer, bufferData, m_size);
+	m_device->vkUnmapMemory(*m_device, GetMemory());
+}
+
+void CBuffer::Write(VkQueue queue, CCommandBufferPool& commandBufferPool,
 	const VkPhysicalDeviceMemoryProperties& memoryProperties, const void* bufferData)
 {
 	auto result = VK_SUCCESS;

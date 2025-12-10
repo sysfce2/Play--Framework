@@ -28,6 +28,7 @@ namespace Framework
 			VkDeviceMemory GetMemory() const;
 
 			void Read(VkQueue, CCommandBufferPool&, const VkPhysicalDeviceMemoryProperties&, void*);
+			void Write(const void*);
 			void Write(VkQueue, CCommandBufferPool&, const VkPhysicalDeviceMemoryProperties&, const void*);
 			
 		private:
